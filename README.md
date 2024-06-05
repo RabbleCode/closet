@@ -3,7 +3,7 @@ A simple WoW: Classic addon to create and delete equipment sets.
 
 Usage:
 
-* `/saveset name` - Overwrites the equipment set named "name" with all equipment currently worn, or creates one a set it doesn't yet exist
+* `/saveset name` - Overwrites the equipment set named "name" with all equipment currently worn, or creates a set if one doesn't yet exist
 * `/deleteset name` or `delset name` - Deletes the equipment set "name" if it exists
 * `/listsets` - Lists all currently saved sets for the current character
 * `/equipset name` - Equips items from the previously saved set named "name"
