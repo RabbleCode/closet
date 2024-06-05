@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+	<Script File="closet.lua"/>
+	<Frame name="closetFrame">
+		<Scripts>
+			<OnLoad>
+				closet:OnLoad();
+			</OnLoad>
+			<OnEvent>
+				closet:OnEvent(self, event, ...);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+ </Ui>

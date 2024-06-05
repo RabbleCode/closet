@@ -1,0 +1,8 @@
+## Interface: 11500
+## Interface-Classic: 11500
+## Title: closet by |cFFFFF468Rabble|r
+## Version: 1.0.0
+## Author: RabbleCode
+
+closet.lua
+closet.xml
