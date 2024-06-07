@@ -12,6 +12,8 @@ function closet:OnLoad()
 	closetFrame:RegisterEvent("PLAYER_LOGIN")
 	closetFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 	closetFrame:RegisterEvent("ADDON_LOADED")
+    closetFrame:RegisterEvent("EQUIPMENT_SWAP_FINISHED")
+    closetFrame:RegisterEvent("EQUIPMENT_SWAP_PENDING")
 end
 
 function closet:OnEvent(self, event, ...)
@@ -23,7 +25,9 @@ function closet:OnEvent(self, event, ...)
 		closet:Announce();		
 	elseif event == "PLAYER_ENTERING_WORLD" then
 		closetFrame:UnregisterEvent("PLAYER_ENTERING_WORLD");
-	end
+    elseif event == "EQUIPMENT_SWAP_FINISHED" then-- or event == "EQUIPMENT_SWAP_PENDING" then
+        closet:HandleSetSwap(arg1, arg2)
+    end
 end
 
 function closet:Announce()
@@ -80,10 +84,19 @@ function closet:HandleListSets()
         closet:PrintMessage("Listing all sets...")
         
         for _,id in ipairs(C_EquipmentSet.GetEquipmentSetIDs()) do 
-            local name, _, setID, isEquipped = C_EquipmentSet.GetEquipmentSetInfo(id)
+            local name = C_EquipmentSet.GetEquipmentSetInfo(id)
             closet:PrintMessage("  "..name)
         end
     else
         closet:PrintMessage("This character has no sets.")
+    end
+end
+
+function closet:HandleSetSwap(success, setID)
+    if(success and setID ~= nil) then        
+        local name = C_EquipmentSet.GetEquipmentSetInfo(setID)
+        closet:PrintMessage(GREEN_FONT_COLOR_CODE.."Equipped set|r "..name)
+    else
+        closet:PrintMessage(RED_FONT_COLOR_CODE.."Equip set failed|r")
     end
 end
