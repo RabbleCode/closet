@@ -27,7 +27,7 @@ function closet:OnEvent(self, event, ...)
 	elseif event == "PLAYER_LOGIN" then
 		closetFrame:UnregisterEvent("PLAYER_LOGIN");
 		closet:Announce();
-        closet.WasMounted = IsMounted()
+        closet.WasMounted = IsMounted() and not UnitOnTaxi("player")
         closet.PreviousSet = closet:GetEquippedSetName()
 	elseif event == "PLAYER_ENTERING_WORLD" then
 		closetFrame:UnregisterEvent("PLAYER_ENTERING_WORLD");
@@ -146,7 +146,7 @@ function closet:AnnounceSetSwap(success, setID)
 end
 
 function closet:SwapMountSets()
-    local isMounted = IsMounted()
+    local isMounted = IsMounted() and not UnitOnTaxi("player")
     -- Player is Dismounting
     if(closet.WasMounted and not isMounted) then
         if(closet:SetExists(closet.PreviousSet)) then
